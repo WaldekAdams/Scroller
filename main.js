@@ -15,5 +15,10 @@ document.addEventListener('mousewheel', function (e) {
     }
 
     currentSectionIndex = currentSectionIndex + direction;
-    console.log(currentSectionIndex)
+    // console.log(currentSectionIndex);
+
+    sections[currentSectionIndex].scrollIntoView({
+        behavior: 'smooth',
+        block: "start",
+    })
 })

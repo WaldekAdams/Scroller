@@ -1,31 +1,37 @@
-const root = document.querySelector('.root');
-const sections = root.querySelectorAll('section');
-let currentSectionIndex = 0;
-let isTrottled = false;
+document.addEventListener('DOMContentLoaded', function () {
+    console.log('ok');
 
-document.addEventListener('mousewheel', function (e) {
-    console.log(e.wheelDelta);
-    if (isTrottled) return;
 
-    setTimeout(function () {
-        isTrottled = false;
-    }, 1000)
+    const root = document.querySelector('.root');
+    const sections = root.querySelectorAll('section');
+    let currentSectionIndex = 0;
+    let isTrottled = false;
 
-    const direction = e.wheelDelta < 0 ? -1 : 1;
+    document.addEventListener('mousewheel', function (e) {
+        // console.log(e.wheelDelta);
+        if (isTrottled) return;
+        isTrottled = true;
 
-    if (direction === 1) {
-        const isLastSection = currentSectionIndex === sections.length - 1;
-        if (isLastSection) return;
-    } else if (direction === -1) {
-        const firstSection = currentSectionIndex === 0;
-        if (firstSection) return;
-    }
+        setTimeout(function () {
+            isTrottled = false;
+        }, 700)
 
-    currentSectionIndex = currentSectionIndex + direction;
-    console.log(currentSectionIndex);
+        const direction = e.wheelDelta < 0 ? -1 : 1;
 
-    sections[currentSectionIndex].scrollIntoView({
-        behavior: 'smooth',
-        block: "start",
+        if (direction === 1) {
+            const isLastSection = currentSectionIndex === sections.length - 1;
+            if (isLastSection) return;
+        } else if (direction === -1) {
+            const firstSection = currentSectionIndex === 0;
+            if (firstSection) return;
+        }
+
+        currentSectionIndex = currentSectionIndex + direction;
+        console.log(currentSectionIndex);
+
+        sections[currentSectionIndex].scrollIntoView({
+            behavior: 'smooth',
+            block: "start",
+        })
     })
 })

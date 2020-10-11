@@ -1,9 +1,16 @@
 const root = document.querySelector('.root');
 const sections = root.querySelectorAll('section');
 let currentSectionIndex = 0;
+let isTrottled = false;
 
 document.addEventListener('mousewheel', function (e) {
-    // console.log(e.wheelDelta);
+    console.log(e.wheelDelta);
+    if (isTrottled) return;
+
+    setTimeout(function () {
+        isTrottled = false;
+    }, 1000)
+
     const direction = e.wheelDelta < 0 ? -1 : 1;
 
     if (direction === 1) {
@@ -15,7 +22,7 @@ document.addEventListener('mousewheel', function (e) {
     }
 
     currentSectionIndex = currentSectionIndex + direction;
-    // console.log(currentSectionIndex);
+    console.log(currentSectionIndex);
 
     sections[currentSectionIndex].scrollIntoView({
         behavior: 'smooth',

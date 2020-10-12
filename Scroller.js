@@ -7,4 +7,18 @@ class Scroller {
         this.isTrottled = false;
 
     }
+
+    listenScroll = (e) => {
+        if (this.isTrottled) return;
+        this.isTrottled = true;
+
+        setTimeout(function () {
+            this.isTrottled = false;
+        }, 700)
+
+        const direction = e.wheelDelta < 0 ? -1 : 1;
+
+        // scrolling(direction)
+
+    }
 }

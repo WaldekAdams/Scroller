@@ -34,6 +34,12 @@ class Scroller {
         this.currentSectionIndex = this.currentSectionIndex + direction;
         // console.log(currentSectionIndex);
 
-        // scrollToCurentSection()
+        this.scrollToCurentSection()
+    }
+    scrollToCurentSection = () => {
+        this.sections[this.currentSectionIndex].scrollIntoView({
+            behavior: 'smooth',
+            block: "start",
+        })
     }
 }

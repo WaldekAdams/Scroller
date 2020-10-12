@@ -18,7 +18,22 @@ class Scroller {
 
         const direction = e.wheelDelta < 0 ? -1 : 1;
 
-        // scrolling(direction)
+        this.scrolling(direction)
 
+    }
+    scrolling = (direction) => {
+        console.log(direction)
+        if (direction === 1) {
+            const isLastSection = this.currentSectionIndex === this.sections.length - 1;
+            if (isLastSection) return;
+        } else if (direction === -1) {
+            const firstSection = this.currentSectionIndex === 0;
+            if (firstSection) return;
+        }
+
+        this.currentSectionIndex = this.currentSectionIndex + direction;
+        // console.log(currentSectionIndex);
+
+        // scrollToCurentSection()
     }
 }

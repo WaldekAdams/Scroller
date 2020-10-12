@@ -12,7 +12,7 @@ class Scroller {
         if (this.isTrottled) return;
         this.isTrottled = true;
 
-        setTimeout(function () {
+        setTimeout(() => {
             this.isTrottled = false;
         }, 700)
 

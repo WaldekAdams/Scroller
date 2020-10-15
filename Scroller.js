@@ -3,9 +3,13 @@ class Scroller {
 
         const root = document.querySelector(rootElement);
         this.sections = document.querySelectorAll('section');
-        this.currentSectionIndex = 0;
+        const sectionArr = [...this.sections];
+        const currentSectionIndex = sectionArr.findIndex((element) => {
+            return this.isScrolledIntoView(element);
+        })
         this.isTrottled = false;
-
+        this.currentSectionIndex = currentSectionIndex < 0 ? 0 : currentSectionIndex;
+        console.log(this.currentSectionIndex)
     }
 
     listenScroll = (e) => {
@@ -22,7 +26,7 @@ class Scroller {
 
     }
     scrolling = (direction) => {
-        console.log(direction)
+        // console.log(direction)
         if (direction === 1) {
             const isLastSection = this.currentSectionIndex === this.sections.length - 1;
             if (isLastSection) return;

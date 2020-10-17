@@ -9,7 +9,9 @@ class Scroller {
         })
         this.isTrottled = false;
         this.currentSectionIndex = currentSectionIndex < 0 ? 0 : currentSectionIndex;
-        console.log(this.currentSectionIndex)
+        console.log(this.currentSectionIndex);
+
+        this.drawNavigation();
     }
 
     listenScroll = (e) => {
@@ -55,5 +57,21 @@ class Scroller {
         const isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
 
         return isVisible;
+    }
+
+    drawNavigation() {
+        this.navConteiner = document.createElement('aside');
+        this.navConteiner.setAttribute('class', 'scroller__navigation');
+        const ul = document.createElement('ul');
+
+        this.sections.forEach(section => {
+            const listItem = document.createElement('li');
+
+            ul.appendChild(listItem);
+        })
+        this.navConteiner.appendChild(ul);
+        document.body.appendChild(this.navConteiner);
+
+
     }
 }

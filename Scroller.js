@@ -12,6 +12,7 @@ class Scroller {
         console.log(this.currentSectionIndex);
 
         this.drawNavigation();
+        this.selectActiveNavItem();
     }
 
     listenScroll = (e) => {
@@ -47,6 +48,7 @@ class Scroller {
             behavior: 'smooth',
             block: "start",
         })
+        this.selectActiveNavItem();
     }
 
     isScrolledIntoView(el) {
@@ -64,8 +66,14 @@ class Scroller {
         this.navConteiner.setAttribute('class', 'scroller__navigation');
         const ul = document.createElement('ul');
 
-        this.sections.forEach(section => {
+        this.sections.forEach((section, index) => {
             const listItem = document.createElement('li');
+
+            listItem.addEventListener('click', () => {
+                this.currentSectionIndex = index;
+
+                this.scrollToCurentSection();
+            })
 
             ul.appendChild(listItem);
         })
@@ -73,5 +81,19 @@ class Scroller {
         document.body.appendChild(this.navConteiner);
 
 
+    }
+
+    selectActiveNavItem() {
+        if (this.navConteiner) {
+
+            const navItems = this.navConteiner.querySelectorAll('li');
+            navItems.forEach((item, index) => {
+                if (index === this.currentSectionIndex) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            })
+        }
     }
 }

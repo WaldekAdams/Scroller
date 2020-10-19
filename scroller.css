@@ -20,3 +20,7 @@
 .scroller__navigation ul li+li {
     margin-top: 10px;
 }
+
+.scroller__navigation ul li.active {
+    background-color: crimson;
+}
